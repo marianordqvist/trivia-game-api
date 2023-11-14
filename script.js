@@ -14,10 +14,11 @@ let score = 0;
 //element variables
 let questionEl = document.querySelector("#question");
 let playersGuessEl = document.querySelector("#answer");
-let submitButtonEl = document.querySelector("#submitBtn");
+let submitButtonEl = document.querySelector(".submitBtn");
 let resultMessage = document.querySelector("#resultMessage");
-let playAgainButtonEl = document.querySelector("#playAgainBtn");
+let playAgainButtonEl = document.querySelector(".playAgainBtn");
 let scoreMessageEl = document.querySelector("#score");
+
 //logic
 
 //get question from api
@@ -52,10 +53,18 @@ function checkGuess() {
     resultMessage.innerHTML = "That was the correct answer!";
     score += 1;
     scoreMessageEl.textContent = "your sscore is:" + score;
+    stopGuess();
   } else {
-    resultMessage.innerHTML = "That was incorrect..";
+    resultMessage.textContent = `Incorrect! The correct answer was ${correctAnswerEl}.`;
+    stopGuess();
   }
 }
+
+function stopGuess() {
+  submitButtonEl.classList.toggle("submitBtn-hide");
+  playAgainButtonEl.classList.toggle("playAgainBtn-show");
+}
+
 //eventlisteners
 submitButtonEl.addEventListener("click", function (e) {
   e.preventDefault();
