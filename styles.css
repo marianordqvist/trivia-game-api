@@ -44,6 +44,8 @@ button {
 #question {
   font-weight: 700;
   font-size: 1.5rem;
+  max-width: 90%;
+  align-self: center;
 }
 
 .playAgainBtn {
@@ -83,4 +85,10 @@ input {
 
 input::placeholder {
   color: palevioletred;
+  font-style: italic;
+}
+
+input:focus {
+  outline: none;
+  background-color: rgb(253, 212, 219);
 }
