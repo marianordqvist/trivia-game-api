@@ -52,7 +52,7 @@ function checkGuess() {
   if (userGuess.toLowerCase() === correctAnswerEl.toLowerCase()) {
     resultMessage.innerHTML = "That was the correct answer!";
     score += 1;
-    scoreMessageEl.textContent = "your sscore is:" + score;
+    scoreMessageEl.textContent = "Score:" + score;
     stopGuess();
   } else {
     resultMessage.textContent = `Incorrect! The correct answer was ${correctAnswerEl}.`;
@@ -72,5 +72,7 @@ submitButtonEl.addEventListener("click", function (e) {
 });
 
 playAgainButtonEl.addEventListener("click", function () {
-  window.location.reload();
+  getData();
+  resultMessage.textContent = "";
+  stopGuess();
 });

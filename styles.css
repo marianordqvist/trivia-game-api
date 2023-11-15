@@ -25,18 +25,20 @@ body {
   max-width: 50%;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  box-shadow: 4px 4px 4px rgba(90, 90, 116, 0.1);
 }
 
 button {
   width: 50%;
-  font-size: 1.2rem;
-  padding: 0.5rem;
+  font-size: 1.5rem;
+  padding: 1rem;
   border-radius: 15px;
   border: none;
   background-color: rgb(174, 228, 174);
   align-self: center;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  box-shadow: 4px 4px 4px rgba(90, 90, 116, 0.1);
 }
 
 #question {
@@ -49,8 +51,15 @@ button {
 }
 
 .playAgainBtn-show {
-  background-color: lightgreen;
+  background-color: rgb(229, 226, 55);
   display: block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.submitBtn {
+  color: green;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
 }
 
 .submitBtn-hide {
@@ -69,4 +78,9 @@ input {
   border-radius: 15px;
   font-size: 1.5rem;
   font-weight: 700;
+  box-shadow: 4px 4px 4px rgba(90, 90, 116, 0.1);
+}
+
+input::placeholder {
+  color: palevioletred;
 }
