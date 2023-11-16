@@ -12,6 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 1rem;
 }
 
 .wrapper {
@@ -22,7 +23,7 @@ body {
   gap: 1rem;
   border-radius: 30px;
   font-size: 1.3rem;
-  max-width: 50%;
+  max-width: 60%;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   box-shadow: 4px 4px 4px rgba(90, 90, 116, 0.1);
@@ -91,4 +92,26 @@ input::placeholder {
 input:focus {
   outline: none;
   background-color: rgb(253, 212, 219);
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    max-width: 90%;
+    padding: 2rem;
+  }
+  body {
+    align-items: start;
+    font-size: 1rem;
+  }
+  button,
+  input {
+    font-size: 1.4rem;
+  }
+  h1 {
+    font-size: 2rem;
+    align-self: auto;
+  }
+  #question {
+    max-width: 100%;
+  }
 }
