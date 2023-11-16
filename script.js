@@ -51,8 +51,10 @@ function checkGuess() {
 
   if (userGuess.toLowerCase() === correctAnswerEl.toLowerCase()) {
     resultMessage.innerHTML = "That was the correct answer!";
-    score += 1;
-    scoreMessageEl.textContent = "Score:" + score;
+    // score += 1;
+    localStorage.setItem("score", (score += 1));
+    let storedScore = localStorage.getItem("score");
+    scoreMessageEl.textContent = "Score:" + storedScore;
     stopGuess();
   } else {
     resultMessage.textContent = `Incorrect! The correct answer was ${correctAnswerEl}.`;
