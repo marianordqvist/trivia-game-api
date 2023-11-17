@@ -70,6 +70,7 @@ function stopGuess() {
 }
 
 //eventlisteners
+
 submitButtonEl.addEventListener("click", function (e) {
   e.preventDefault();
   checkGuess();
