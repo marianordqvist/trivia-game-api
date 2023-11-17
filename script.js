@@ -9,7 +9,7 @@ const options = {
 
 //state variables
 let correctAnswerEl;
-let score = 0;
+let score = parseInt(localStorage.getItem("score")) || 0;
 
 //element variables
 let questionEl = document.querySelector("#question");
@@ -18,6 +18,8 @@ let submitButtonEl = document.querySelector(".submitBtn");
 let resultMessage = document.querySelector("#resultMessage");
 let playAgainButtonEl = document.querySelector(".playAgainBtn");
 let scoreMessageEl = document.querySelector("#score");
+scoreMessageEl.textContent = "Score: " + score;
+let clearScoreButtonEl = document.querySelector("#clearScoreBtn");
 
 //logic
 
@@ -51,10 +53,10 @@ function checkGuess() {
 
   if (userGuess.toLowerCase() === correctAnswerEl.toLowerCase()) {
     resultMessage.innerHTML = "That was the correct answer!";
-    // score += 1;
-    localStorage.setItem("score", (score += 1));
+    score += 1;
+    localStorage.setItem("score", score);
     let storedScore = localStorage.getItem("score");
-    scoreMessageEl.textContent = "Score:" + storedScore;
+    scoreMessageEl.textContent = "Score:" + score;
     stopGuess();
   } else {
     resultMessage.textContent = `Incorrect! The correct answer was ${correctAnswerEl}.`;
@@ -77,4 +79,13 @@ playAgainButtonEl.addEventListener("click", function () {
   getData();
   resultMessage.textContent = "";
   stopGuess();
+
+  // clear input field
+  playersGuessEl.value = "";
+});
+
+clearScoreButtonEl.addEventListener("click", function () {
+  score = 0;
+  localStorage.setItem("score", score);
+  scoreMessageEl.textContent = "Score: " + score;
 });
