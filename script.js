@@ -64,12 +64,13 @@ function checkGuess() {
   }
 }
 
+//hides submit button and shows play again button
 function stopGuess() {
   submitButtonEl.classList.toggle("submitBtn-hide");
   playAgainButtonEl.classList.toggle("playAgainBtn-show");
 }
 
-//eventlisteners
+// eventlisteners
 
 submitButtonEl.addEventListener("click", function (e) {
   e.preventDefault();
