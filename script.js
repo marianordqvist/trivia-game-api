@@ -1,45 +1,62 @@
-const url = "https://trivia-by-api-ninjas.p.rapidapi.com/v1/trivia";
+const url = "https://quiz26.p.rapidapi.com/questions";
 const options = {
   method: "GET",
   headers: {
     "X-RapidAPI-Key": "d4df5d977bmsh318d5d8cb6d3887p11b55ajsnfc34389c54e5",
-    "X-RapidAPI-Host": "trivia-by-api-ninjas.p.rapidapi.com",
+    "X-RapidAPI-Host": "quiz26.p.rapidapi.com",
   },
 };
 
 //state variables
 let correctAnswerEl;
 let score = parseInt(localStorage.getItem("score")) || 0;
+let randomIndex;
+let playerGuessValue;
 
 //element variables
 let questionEl = document.querySelector("#question");
-let playersGuessEl = document.querySelector("#answer");
-let submitButtonEl = document.querySelector(".submitBtn");
-let resultMessage = document.querySelector("#resultMessage");
+let answerButtonsEl = document.querySelector(".answer-buttons");
 let playAgainButtonEl = document.querySelector(".playAgainBtn");
+let submitBtnAEl = document.querySelector("#answerBtnA");
+let submitBtnBEl = document.querySelector("#answerBtnB");
+let submitBtnCEl = document.querySelector("#answerBtnC");
+let submitBtnDEl = document.querySelector("#answerBtnD");
+let resultMessage = document.querySelector("#resultMessage");
 let scoreMessageEl = document.querySelector("#score");
-scoreMessageEl.textContent = "Score: " + score;
 let clearScoreButtonEl = document.querySelector("#clearScoreBtn");
 
 //logic
 
-//get question from api
+//get questions & answers from api
+
 async function getData() {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    let questionTextEl = result[0].question;
-    correctAnswerEl = result[0].answer;
 
-    //add a question mark if there is none from the api
-    if (!questionTextEl.endsWith("?")) {
-      questionTextEl += "?";
-    }
+    console.log(result);
 
+    randomIndex = Math.floor(Math.random() * result.length);
+    console.log("random index: " + randomIndex);
+
+    let questionTextEl = result[randomIndex].question;
+    correctAnswerEl = result[randomIndex].answer;
+    let answerA = result[randomIndex].A;
+    let answerB = result[randomIndex].B;
+    let answerC = result[randomIndex].C;
+    let answerD = result[randomIndex].D;
+    console.log("correct answer:" + correctAnswerEl);
+
+    console.log("Updating question:" + questionTextEl);
     //display question
     questionEl.innerText = "Question: " + questionTextEl;
 
-    console.log(result[0].answer);
+    // display answers
+
+    submitBtnAEl.textContent = "A: " + answerA;
+    submitBtnBEl.textContent = "B: " + answerB;
+    submitBtnCEl.textContent = "C: " + answerC;
+    submitBtnDEl.textContent = "D: " + answerD;
   } catch (error) {
     console.error(error);
   }
@@ -49,10 +66,8 @@ getData();
 
 //Check answer
 function checkGuess() {
-  let userGuess = playersGuessEl.value;
-
-  if (userGuess.toLowerCase() === correctAnswerEl.toLowerCase()) {
-    resultMessage.innerHTML = "That was the correct answer!";
+  if (playerGuessValue === correctAnswerEl) {
+    resultMessage.innerHTML = "Correct!";
     score += 1;
     localStorage.setItem("score", score);
     let storedScore = localStorage.getItem("score");
@@ -64,26 +79,41 @@ function checkGuess() {
   }
 }
 
-//hides submit button and shows play again button
+//hides answer buttons and shows play again button
 function stopGuess() {
-  submitButtonEl.classList.toggle("submitBtn-hide");
   playAgainButtonEl.classList.toggle("playAgainBtn-show");
 }
 
 // eventlisteners
 
-submitButtonEl.addEventListener("click", function (e) {
+submitBtnAEl.addEventListener("click", function (e) {
   e.preventDefault();
+  playerGuessValue = "A";
+  checkGuess();
+});
+
+submitBtnBEl.addEventListener("click", function (e) {
+  e.preventDefault();
+  playerGuessValue = "B";
+  checkGuess();
+});
+
+submitBtnCEl.addEventListener("click", function (e) {
+  e.preventDefault();
+  playerGuessValue = "C";
+  checkGuess();
+});
+
+submitBtnDEl.addEventListener("click", function (e) {
+  e.preventDefault();
+  playerGuessValue = "D";
   checkGuess();
 });
 
 playAgainButtonEl.addEventListener("click", function () {
-  getData();
   resultMessage.textContent = "";
   stopGuess();
-
-  // clear input field
-  playersGuessEl.value = "";
+  getData();
 });
 
 clearScoreButtonEl.addEventListener("click", function () {

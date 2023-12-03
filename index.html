@@ -8,23 +8,25 @@
   </head>
   <body>
     <div class="wrapper">
-      <h1>Trivia game</h1>
+      <h1>Trivia</h1>
       <div id="question">Question</div>
-      <input
-        type="text"
-        name="answer"
-        id="answer"
-        placeholder="Type answer here.."
-      />
-      <button type="submit" id="submitBtn" class="submitBtn">SUBMIT</button>
+
+      <div class="answer-buttons" id="answerButtons">
+        <button type="submit" id="answerBtnA" class="answerBtnA">A</button>
+        <button type="submit" id="answerBtnB" class="answerBtnB">B</button>
+        <button type="submit" id="answerBtnC" class="answerBtnC">C</button>
+        <button type="submit" id="answerBtnD" class="answerBtnD">D</button>
+      </div>
+
+      <!-- <button type="submit" id="submitBtn" class="submitBtn">SUBMIT</button> -->
       <div id="resultMessage"></div>
+
+      <button id="playAgainBtn" class="playAgainBtn">NEXT!</button>
 
       <div class="scoreSection">
         <div id="score">Score: 0</div>
         <button id="clearScoreBtn">CLEAR</button>
       </div>
-
-      <button id="playAgainBtn" class="playAgainBtn">NEXT!</button>
     </div>
     <script src="script.js"></script>
   </body>
